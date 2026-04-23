@@ -12,7 +12,7 @@ source:
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
   entry_points:
     - ommprotocol = ommprotocol:run_protocol
     - ommanalyze = ommprotocol.analyze:main
@@ -21,10 +21,10 @@ build:
 
 requirements:
   host:
-    - python >=3.6
+    - python {{ python_min }}
     - pip
   run:
-    - python >=3.6
+    - python >={{ python_min }}
     - openmm <7.6.0a
     - ruamel_yaml
     - parmed
@@ -49,6 +49,7 @@ test:
     - ommanalyze --help 
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/insilichem/ommprotocol
